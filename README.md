@@ -2,6 +2,40 @@
 
 This project displays an interactive map with various locations and filtering capabilities.
 
+## Features and Functionality
+
+This frontend prototype offers the following features:
+
+### Map Visualization
+- Interactive OpenStreetMap integration using Leaflet.js
+- Custom markers with color-coded icons representing different location types
+- Pan and zoom capabilities for easy navigation
+- Initial view centered on the DACH region (Germany, Austria, Switzerland)
+
+### Location Types
+- Home: Personal residences
+- Firma: Companies and corporate locations
+- Wirkungsbereich: Areas of influence/effect
+- Unternehmen: Businesses and enterprises
+- Projekt: Various project locations
+- Tisch: Meeting tables/places
+
+### Filtering Capabilities
+- Filter locations by type using the dropdown menu
+- Text search functionality to find locations by title or description
+- Toggle to display service areas for businesses and companies
+
+### Interactive Elements
+- Clickable markers that reveal detailed information
+- Information panel with location details slides in from the right
+- Service area visualization for business-type locations (5km radius for companies, 3km for businesses)
+- Color-coded legend for easy identification of location types
+
+### Data Structure
+- Locations stored in a structured JSON format
+- Each location contains type, geographic coordinates, icon, and descriptive information
+- Easily extensible to include additional location types or data fields
+
 ## Local Development
 
 To run the project locally:
