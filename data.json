@@ -1,0 +1,508 @@
+{
+    "points": [
+        {
+            "type": "Home",
+            "coordinates": [52.5200, 13.4050],
+            "icon": "fas fa-home",
+            "info": {
+                "title": "Mein Zuhause",
+                "description": "Hier wohne ich."
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [52.5300, 13.4150],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "Meine Firma",
+                "description": "Hier arbeite ich."
+            }
+        },
+        {
+            "type": "Wirkungsbereich",
+            "coordinates": [52.5100, 13.3950],
+            "icon": "fas fa-globe",
+            "info": {
+                "title": "Wirkungsbereich",
+                "description": "Mein Einflussbereich."
+            }
+        },
+        {
+            "type": "Unternehmen",
+            "coordinates": [52.5250, 13.4250],
+            "icon": "fas fa-briefcase",
+            "info": {
+                "title": "Lokales Unternehmen",
+                "description": "Ein Partnerunternehmen."
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.5150, 13.3850],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Projekt X",
+                "description": "Ein laufendes Projekt."
+            }
+        },
+        {
+            "type": "Tisch",
+            "coordinates": [52.5350, 13.4350],
+            "icon": "fas fa-table",
+            "info": {
+                "title": "Konferenztisch",
+                "description": "Ein Treffpunkt."
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.5050, 13.3750],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Projekt Alpha",
+                "description": "Neues Stadtentwicklungsprojekt"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.5180, 13.4080],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Projekt Beta",
+                "description": "IT-Infrastrukturprojekt"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.5120, 13.4220],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Projekt Gamma",
+                "description": "Forschungsprojekt zur Nachhaltigkeit"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.5270, 13.3920],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Projekt Delta",
+                "description": "Architekturprojekt im Zentrum"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.5310, 13.4010],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Projekt Epsilon",
+                "description": "Kulturförderungsprojekt"
+            }
+        },
+        {
+            "type": "Tisch",
+            "coordinates": [52.5230, 13.4120],
+            "icon": "fas fa-table",
+            "info": {
+                "title": "Meetingtisch 1",
+                "description": "Hauptkonferenzraum"
+            }
+        },
+        {
+            "type": "Tisch",
+            "coordinates": [52.5280, 13.4050],
+            "icon": "fas fa-table",
+            "info": {
+                "title": "Meetingtisch 2",
+                "description": "Innovationsraum"
+            }
+        },
+        {
+            "type": "Tisch",
+            "coordinates": [52.5320, 13.4180],
+            "icon": "fas fa-table",
+            "info": {
+                "title": "Meetingtisch 3",
+                "description": "Design-Thinking-Raum"
+            }
+        },
+        {
+            "type": "Tisch",
+            "coordinates": [52.5260, 13.3980],
+            "icon": "fas fa-table",
+            "info": {
+                "title": "Meetingtisch 4",
+                "description": "Co-Working-Space"
+            }
+        },
+        {
+            "type": "Tisch",
+            "coordinates": [52.5190, 13.4230],
+            "icon": "fas fa-table",
+            "info": {
+                "title": "Meetingtisch 5",
+                "description": "Kreativbereich"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [48.1351, 11.5820],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "TechSolutions GmbH",
+                "description": "IT-Beratung in München"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [50.1109, 8.6821],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "FinanceGroup AG",
+                "description": "Finanzdienstleister in Frankfurt"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [53.5511, 9.9937],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "NordSee Logistik",
+                "description": "Logistikunternehmen in Hamburg"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [51.2277, 6.7735],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "RheinDesign",
+                "description": "Werbeagentur in Düsseldorf"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [48.7758, 9.1829],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "StuttgartMotors",
+                "description": "Automobilzulieferer in Stuttgart"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [51.3396, 12.3713],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "LeipzigMedia",
+                "description": "Medienhaus in Leipzig"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [47.3769, 8.5417],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "SwissBanking AG",
+                "description": "Finanzinstitut in Zürich"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [46.9480, 7.4474],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "BernConsulting",
+                "description": "Beratungsunternehmen in Bern"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [47.5596, 7.5886],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "BaselPharma",
+                "description": "Pharmaunternehmen in Basel"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [46.2044, 6.1432],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "GenevaWatch",
+                "description": "Luxusuhrenmanufaktur in Genf"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [48.2082, 16.3738],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "ViennaClassics",
+                "description": "Musikverlag in Wien"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [47.0707, 15.4395],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "GrazTech",
+                "description": "Technologieunternehmen in Graz"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [48.3069, 14.2858],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "LinzSteel",
+                "description": "Stahlproduzent in Linz"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [47.2692, 11.4041],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "InnsbruckTourism",
+                "description": "Tourismusverband in Innsbruck"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [51.0504, 13.7373],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "DresdenChip",
+                "description": "Halbleiterhersteller in Dresden"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [49.4521, 11.0768],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "NürnbergSystems",
+                "description": "Systemhaus in Nürnberg"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [47.8095, 13.0550],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "SalzburgSound",
+                "description": "Tonstudio in Salzburg"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [46.6863, 7.8632],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "InterlakeSports",
+                "description": "Sportartikelhandel in Interlaken"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [50.9375, 6.9603],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "KölnMedia",
+                "description": "Medienagentur in Köln"
+            }
+        },
+        {
+            "type": "Firma",
+            "coordinates": [47.4245, 9.3767],
+            "icon": "fas fa-building",
+            "info": {
+                "title": "StGallenTextil",
+                "description": "Textilbetrieb in St. Gallen"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [52.3740, 13.2800],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "BER Erweiterung",
+                "description": "Infrastrukturprojekt in Berlin-Brandenburg"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [48.1768, 11.5519],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "MunichSmartCity",
+                "description": "Digitalisierungsprojekt in München"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [50.1265, 8.5830],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "FrankfurtTower",
+                "description": "Hochhausprojekt in Frankfurt"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [53.5753, 10.0153],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "HamburgHarbor2030",
+                "description": "Hafenmodernisierung in Hamburg"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [51.2429, 6.7892],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Düsseldorf Rheinufer",
+                "description": "Stadtentwicklungsprojekt in Düsseldorf"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [48.7784, 9.2081],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Stuttgart 21",
+                "description": "Verkehrsprojekt in Stuttgart"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [51.3667, 12.3833],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Leipzig Cultures",
+                "description": "Kulturprojekt in Leipzig"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [47.3850, 8.5250],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Zürich West",
+                "description": "Stadtentwicklung in Zürich"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [46.9500, 7.4400],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Bern Digital",
+                "description": "E-Government in Bern"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [47.5636, 7.5750],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "BaselPort",
+                "description": "Hafenprojekt in Basel"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [46.2150, 6.1466],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "GenèveVerte",
+                "description": "Umweltprojekt in Genf"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [48.2200, 16.3800],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Wien Hauptbahnhof",
+                "description": "Infrastrukturprojekt in Wien"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [47.0650, 15.4481],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Graz Smart Energy",
+                "description": "Energieprojekt in Graz"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [48.3200, 14.2880],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Linz Digital Arts",
+                "description": "Kulturprojekt in Linz"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [47.2750, 11.3900],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Innsbruck Olympics",
+                "description": "Sportinfrastrukturprojekt in Innsbruck"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [51.0550, 13.7250],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Dresden Neustadt",
+                "description": "Stadtentwicklung in Dresden"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [49.4560, 11.0870],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Nürnberg Transport",
+                "description": "ÖPNV-Projekt in Nürnberg"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [47.8000, 13.0400],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Salzburg Festival",
+                "description": "Kulturprojekt in Salzburg"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [46.7000, 7.8550],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Interlaken Tourism",
+                "description": "Tourismusentwicklung in Interlaken"
+            }
+        },
+        {
+            "type": "Projekt",
+            "coordinates": [50.9425, 6.9577],
+            "icon": "fas fa-project-diagram",
+            "info": {
+                "title": "Köln Messe",
+                "description": "Messezentrum-Erweiterung in Köln"
+            }
+        }
+    ]
+}

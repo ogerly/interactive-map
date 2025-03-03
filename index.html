@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Karte</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Font Awesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1001;
+            padding: 10px 20px;
+        }
+        #map {
+            height: calc(100vh - 60px);
+            width: 100%;
+            margin-top: 60px;
+        }
+        #info-panel {
+            position: fixed;
+            top: 60px; /* Adjusted for navbar */
+            right: 0;
+            width: 300px;
+            height: calc(100% - 60px);
+            background: white;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        #info-panel.open {
+            transform: translateX(0);
+        }
+        .service-area-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .type-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        /* Farben für verschiedene Typen */
+        .type-Home { background-color: #28a745; }
+        .type-Firma { background-color: #007bff; }
+        .type-Wirkungsbereich { background-color: #6610f2; }
+        .type-Unternehmen { background-color: #fd7e14; }
+        .type-Projekt { background-color: #dc3545; }
+        .type-Tisch { background-color: #17a2b8; }
+        
+        /* Custom styles for marker icons */
+        .custom-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .custom-icon i {
+            font-size: 24px;
+            filter: drop-shadow(0px 0px 3px white);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar mit Filter und Suche -->
+    <div id="navbar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="filter-group">
+                        <label for="type-filter" class="mb-0 mr-2">Filter:</label>
+                        <select id="type-filter" class="form-control form-control-sm" style="width: auto;">
+                            <option value="all">Alle Typen</option>
+                            <option value="Home">Home</option>
+                            <option value="Firma">Firma</option>
+                            <option value="Wirkungsbereich">Wirkungsbereich</option>
+                            <option value="Unternehmen">Unternehmen</option>
+                            <option value="Projekt">Projekt</option>
+                            <option value="Tisch">Tisch</option>
+                        </select>
+                        
+                        <div class="form-check form-check-inline ml-3">
+                            <input class="form-check-input" type="checkbox" id="show-service-areas" value="option1">
+                            <label class="form-check-label" for="show-service-areas">Service-Gebiete anzeigen</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="search-input" class="form-control form-control-sm" placeholder="Suchen...">
+                        <div class="input-group-append">
+                            <button id="search-btn" class="btn btn-sm btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div id="type-legend" class="d-flex flex-wrap">
+                        <!-- Legende wird mit JavaScript erstellt -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+    <div id="info-panel">
+        <button id="close-btn" class="btn btn-secondary mb-3">Schließen</button>
+        <div id="info-content"></div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Daten-Definition mit Farben
+        const typeColors = {
+            "Home": "#28a745",         // Grün
+            "Firma": "#007bff",        // Blau
+            "Wirkungsbereich": "#6610f2", // Lila
+            "Unternehmen": "#fd7e14",  // Orange
+            "Projekt": "#dc3545",      // Rot
+            "Tisch": "#17a2b8"         // Türkis
+        };
+        
+        // Marker-Container für einfaches Hinzufügen/Entfernen
+        let markers = [];
+        let serviceAreas = {};
+        let points = [];
+
+        // Karte initialisieren (zentriert auf DACH-Region)
+        const map = L.map('map').setView([49.8, 10.5], 6);  // Zentriert auf Deutschland/DACH
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Daten aus JSON laden
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                points = data.points;
+                createLegend();
+                updateMarkers();
+            })
+            .catch(error => console.error('Fehler beim Laden der Daten:', error));
+
+        // Legende erstellen
+        function createLegend() {
+            const legend = document.getElementById('type-legend');
+            legend.innerHTML = '';
+            
+            Object.keys(typeColors).forEach(type => {
+                const badge = document.createElement('div');
+                badge.classList.add('type-badge');
+                badge.classList.add(`type-${type}`);
+                badge.innerHTML = type;
+                badge.style.backgroundColor = typeColors[type];
+                badge.style.margin = '0 5px 5px 0';
+                legend.appendChild(badge);
+            });
+        }
+
+        // Funktion zum Zeichnen der Service-Area
+        function drawServiceArea(coordinates, radius, type, pointId) {
+            const serviceArea = L.circle(coordinates, {
+                radius: radius * 1000, // Radius in Metern
+                color: typeColors[type] || '#007bff',
+                fillColor: typeColors[type] || '#007bff',
+                fillOpacity: 0.2,
+                weight: 2,
+                dashArray: '5, 10'
+            });
+            
+            // Speichern der Service-Area mit Point-ID für einfaches Filtern
+            serviceAreas[pointId] = serviceArea;
+            
+            return serviceArea;
+        }
+
+        // Marker und Service-Areas anzeigen basierend auf Filter
+        function updateMarkers() {
+            const filterValue = $('#type-filter').val();
+            const searchText = $('#search-input').val().toLowerCase();
+            const showServiceAreas = $('#show-service-areas').is(':checked');
+            
+            // Alle Marker entfernen
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            
+            // Alle Service-Areas entfernen
+            Object.values(serviceAreas).forEach(area => {
+                if (map.hasLayer(area)) map.removeLayer(area);
+            });
+            
+            // Neue gefilterte Marker hinzufügen
+            points.forEach((point, index) => {
+                // Prüfen, ob der Punkt den Filterkriterien entspricht
+                if ((filterValue === 'all' || point.type === filterValue) && 
+                    (searchText === '' || 
+                     point.info.title.toLowerCase().includes(searchText) || 
+                     point.info.description.toLowerCase().includes(searchText))) {
+                    
+                    // Icon erstellen
+                    const customIcon = L.divIcon({
+                        className: 'custom-icon',
+                        html: `<i class="${point.icon}" style="color: ${typeColors[point.type]};"></i>`,
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 16],
+                        popupAnchor: [0, -16]
+                    });
+                    
+                    // Marker erstellen
+                    const marker = L.marker(point.coordinates, { icon: customIcon });
+                    
+                    // Click-Event
+                    marker.on('click', () => {
+                        // Basis-Informationen anzeigen
+                        let infoContent = `
+                            <h2>${point.info.title}</h2>
+                            <p>${point.info.description}</p>
+                            <span class="type-badge type-${point.type}">${point.type}</span>
+                        `;
+
+                        // Wenn es sich um einen Firma-Typ handelt, zeige Service-Area
+                        if (point.type === "Firma" || point.type === "Unternehmen") {
+                            // Service-Radius basierend auf Typ
+                            const serviceRadius = point.type === "Firma" ? 5 : 3;
+                            
+                            // Service-Area anzeigen, wenn nicht vorhanden
+                            if (!serviceAreas[index] || !map.hasLayer(serviceAreas[index])) {
+                                serviceAreas[index] = drawServiceArea(point.coordinates, serviceRadius, point.type, index);
+                            }
+                            
+                            // Service-Area anzeigen
+                            if (!map.hasLayer(serviceAreas[index])) {
+                                serviceAreas[index].addTo(map);
+                            }
+                            
+                            // Zoome auf den Service-Bereich
+                            map.fitBounds(serviceAreas[index].getBounds());
+                            
+                            // Füge Service-Area-Info hinzu
+                            infoContent += `
+                                <div class="service-area-info">
+                                    <h4>Service-Gebiet</h4>
+                                    <p>Radius: ${serviceRadius} km um ${point.info.title}</p>
+                                    <p>Unsere Dienstleistungen sind in diesem Bereich verfügbar.</p>
+                                </div>
+                            `;
+                        } else {
+                            // Entferne alle Service-Areas
+                            Object.values(serviceAreas).forEach(area => {
+                                if (map.hasLayer(area)) map.removeLayer(area);
+                            });
+                        }
+
+                        $('#info-content').html(infoContent);
+                        $('#info-panel').addClass('open');
+                    });
+                    
+                    // Marker zur Karte und zum Array hinzufügen
+                    marker.addTo(map);
+                    markers.push(marker);
+                    
+                    // Wenn "Service-Gebiete anzeigen" aktiviert ist und es ein Unternehmen/Firma ist
+                    if (showServiceAreas && (point.type === "Firma" || point.type === "Unternehmen")) {
+                        const serviceRadius = point.type === "Firma" ? 5 : 3;
+                        if (!serviceAreas[index]) {
+                            serviceAreas[index] = drawServiceArea(point.coordinates, serviceRadius, point.type, index);
+                        }
+                        serviceAreas[index].addTo(map);
+                    }
+                }
+            });
+        }
+
+        // Event-Listener für Filter
+        $('#type-filter').on('change', updateMarkers);
+        $('#show-service-areas').on('change', updateMarkers);
+        
+        // Event-Listener für Suche
+        $('#search-btn').on('click', updateMarkers);
+        $('#search-input').on('keyup', function(e) {
+            if (e.key === 'Enter') {
+                updateMarkers();
+            }
+        });
+
+        // Infofenster schließen
+        $('#close-btn').on('click', () => {
+            $('#info-panel').removeClass('open');
+            
+            // Entferne Service-Areas wenn nicht "Service-Gebiete anzeigen" aktiviert
+            if (!$('#show-service-areas').is(':checked')) {
+                Object.values(serviceAreas).forEach(area => {
+                    if (map.hasLayer(area)) map.removeLayer(area);
+                });
+            }
+            
+            // Zentriere Karte wieder auf Berlin
+            map.setView([52.5200, 13.4050], 12);
+        });
+    </script>
+</body>
+</html>
